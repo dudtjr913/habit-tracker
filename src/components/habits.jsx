@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import AddForm from './addForm';
 import Habit from './habit';
+import Navbar from './navbar';
 
 class Habits extends Component {
   constructor(props) {
@@ -12,6 +14,16 @@ class Habits extends Component {
       ],
     };
   }
+
+  get habitCount() {
+    return this.state.habits.reduce((acc, habit) => (habit.count > 0 ? acc + 1 : acc), 0);
+  }
+
+  handleAddHabit = (habitName) => {
+    const habit = { name: habitName, count: 0, id: Math.floor(Math.random(999999) * 100) };
+    const habits = this.state.habits.concat(habit);
+    this.setState({ habits });
+  };
 
   handleIncrease = (habit) => {
     const habits = [...this.state.habits];
@@ -39,19 +51,32 @@ class Habits extends Component {
     }));
   };
 
+  handleHabitResetAllButton = () => {
+    const habits = this.state.habits.map((habit) => ({ ...habit }));
+    habits.forEach((habit) => (habit.count = 0));
+    this.setState({ habits });
+  };
+
   render() {
     return (
-      <ul>
-        {this.state.habits.map((habit) => (
-          <Habit
-            key={habit.id}
-            habit={habit}
-            onIncrease={this.handleIncrease}
-            onDecrease={this.handleDecrease}
-            onDelete={this.handleDelete}
-          />
-        ))}
-      </ul>
+      <>
+        <Navbar count={this.habitCount} />
+        <AddForm onAddHabit={this.handleAddHabit} />
+        <ul>
+          {this.state.habits.map((habit) => (
+            <Habit
+              key={habit.id}
+              habit={habit}
+              onIncrease={this.handleIncrease}
+              onDecrease={this.handleDecrease}
+              onDelete={this.handleDelete}
+            />
+          ))}
+        </ul>
+        <button class="habit-reset-all" onClick={this.handleHabitResetAllButton}>
+          Reset all
+        </button>
+      </>
     );
   }
 }

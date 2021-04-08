@@ -4,10 +4,39 @@ button {
   cursor: pointer;
 }
 
+ul {
+  padding: 0;
+}
+
+.habit-title {
+  background-color: wheat;
+  height: 5rem;
+  line-height: 5rem;
+  padding-left: 5rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.habit-add-form {
+  margin: 1rem 0.5rem 1rem 5rem;
+}
+
+.habit-add-input {
+  width: 15rem;
+  font-size: 1.5rem;
+}
+
+.habit-add-button {
+  font-size: 1.5rem;
+  background-color: rgb(1, 155, 1);
+  color: white;
+  margin-left: 0.2rem;
+}
+
 .habit-list {
   list-style: none;
-  padding: 0.5rem;
   font-size: 2rem;
+  margin: 1rem 0.5rem 1rem 5rem;
 }
 
 .habit-count {
@@ -41,4 +70,13 @@ button {
 
 .habit-delete {
   color: darkred;
+}
+
+.habit-reset-all {
+  margin-left: 5rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  background-color: rgb(7, 156, 124);
+  color: white;
+  padding: 0.2rem 1rem;
 }
