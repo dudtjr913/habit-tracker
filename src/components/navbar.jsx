@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Navbar extends Component {
+class Navbar extends PureComponent {
   render() {
     return (
-      <>
-        <h1 className="habit-title">
-          Habit Tracker <span className="habit-count">{this.props.count}</span>
-        </h1>
-      </>
+      <header className="habit-header">
+        <i className="habit-header-icon fas fa-leaf"></i>
+        <h1 className="habit-title">Habit Tracker</h1>
+        <span className="habit-count">{this.props.count}</span>
+      </header>
     );
   }
 }

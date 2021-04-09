@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class AddForm extends Component {
+class AddForm extends PureComponent {
   handleHabitAddForm = (e) => {
     e.preventDefault();
     const $input = e.target['habit-add-input'];
-    this.props.onAddHabit($input.value);
-    $input.value = '';
+
+    $input.value && this.props.onAddHabit($input.value);
+    e.target.reset();
   };
 
   render() {

@@ -1,19 +1,31 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Habit extends Component {
+class Habit extends PureComponent {
+  onIncrease = () => {
+    this.props.onIncrease(this.props.habit);
+  };
+
+  onDecrease = () => {
+    this.props.onDecrease(this.props.habit);
+  };
+
+  onDelete = () => {
+    this.props.onDelete(this.props.habit);
+  };
+
   render() {
     const { name, count } = this.props.habit;
     return (
       <li className="habit-list">
         <span className="habit-name">{name}</span>
         <span className="habit-count">{count}</span>
-        <button className="habit-button habit-increase" onClick={this.props.onIncrease.bind(this, this.props.habit)}>
+        <button className="habit-button habit-increase" onClick={this.onIncrease}>
           <i className="fas fa-plus-square"></i>
         </button>
-        <button className="habit-button habit-decrease" onClick={this.props.onDecrease.bind(this, this.props.habit)}>
+        <button className="habit-button habit-decrease" onClick={this.onDecrease}>
           <i className="fas fa-minus-square"></i>
         </button>
-        <button className="habit-button habit-delete" onClick={this.props.onDelete.bind(this, this.props.habit)}>
+        <button className="habit-button habit-delete" onClick={this.onDelete}>
           <i className="fas fa-trash"></i>
         </button>
       </li>
